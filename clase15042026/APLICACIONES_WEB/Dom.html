@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3 id="titulo">Bienvenido</h3>
+    <input id="nombre" type="text" placeholder="Escribe tu nombre" />
+    <button id="btn">Saludar</button>
+    <p id="resultado"></p>
+
+    <h3 id="subtitulo">Despedida</h3>
+    <input
+      id="segundoNombre"
+      type="text"
+      placeholder="Escribe tu segundo nombre"
+    />
+    <button id="btnDespedida">Despedirse</button>
+    <p id="resultadoDespedida"></p>
+
+    <script>
+      const inputNombre = document.getElementById("nombre");
+      const btnSaludar = document.getElementById("btn");
+      const resultado = document.getElementById("resultado");
+
+      btnSaludar.addEventListener("click", () => {
+        const nombre = inputNombre.value;
+        resultado.textContent = `Hola, ${nombre}!`;
+      });
+
+      const inputSegundoNombre = document.getElementById("segundoNombre");
+      const btnDespedida = document.getElementById("btnDespedida");
+      const resultadoDespedida = document.getElementById("resultadoDespedida");
+
+      btnDespedida.addEventListener("click", () => {
+        const segundoNombre = inputSegundoNombre.value;
+        resultadoDespedida.textContent = `Adiós, ${segundoNombre}!`;
+      });
+    </script>
+  </body>
+</html>

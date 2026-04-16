@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RETO 1</title>
+  </head>
+  <body>
+    <div class="box">
+      <h3 id="titulo">PRACTICA CON DOM</h3>
+      <input id="nombre" type="text" placeholder="Escribe tu nombre" />
+      <button id="btn">Saludar</button>
+      <button id="btnColor">Cambiar color</button>
+      <button id="btnLimpiar">Limpiar</button>
+      <p id="mensajeDom">Aquí aparecerá el mensaje</p>
+    </div>
+    <script>
+      const inputNombre = document.getElementById("nombre");
+      const btnSaludar = document.getElementById("btn");
+      const mensajeDom = document.getElementById("mensajeDom");
+
+      btnSaludar.addEventListener("click", () => {
+        const nombre = inputNombre.value;
+        mensajeDom.textContent = `Hola, ${nombre}!`;
+      });
+
+      const btnColor = document.getElementById("btnColor");
+      const box = document.querySelector(".box");
+
+      btnColor.addEventListener("click", () => {
+        mensajeDom.style.color = "lightblue";
+        mensajeDom.style.fontWeight = "bold";
+        box.style.backgroundColor = "red";
+      });
+
+      const btnLimpiar = document.getElementById("btnLimpiar");
+      btnLimpiar.addEventListener("click", () => {
+        inputNombre.value = "";
+        mensajeDom.textContent = "";
+      });
+    </script>
+  </body>
+</html>

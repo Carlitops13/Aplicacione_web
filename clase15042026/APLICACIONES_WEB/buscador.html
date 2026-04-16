@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscador de Pokemons</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f4f4f4;
+      }
+      #resultado {
+        margin-top: 20px;
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+      }
+      img {
+        width: 150px;
+      }
+
+      input,
+      button {
+        padding: 10px;
+        font-size: 16px;
+        margin-right: 10px;
+      }
+
+      button {
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Buscador de Pokemons</h1>
+    <input
+      type="text"
+      id="inputPokemon"
+      placeholder="Ingrese el nombre del pokemon"
+    />
+    <button id="btnBuscar">Buscar Pokemon</button>
+    <div id="resultado"></div>
+
+    <script>
+      const btnBuscar = document.getElementById("btnBuscar");
+      const inputPokemon = document.getElementById("inputPokemon");
+      const resultado = document.getElementById("resultado");
+
+      btnBuscar.addEventListener("click", () => {
+        const pokemonName = inputPokemon.value.toLowerCase();
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            resultado.innerHTML = `
+                      <h2>${data.name}</h2>
+                      <p>ID: ${data.id}</p>
+                       <p>Tipo: ${data.types.map((t) => t.type.name).join(", ")}</p>
+                       <img src="${data.sprites.front_default}" alt="${data.name}">
+                    `;
+          })
+          .catch((error) => {
+            resultado.innerHTML = `<p>${error.message}</p>`;
+            console.error(error);
+          });
+      });
+    </script>
+  </body>
+</html>

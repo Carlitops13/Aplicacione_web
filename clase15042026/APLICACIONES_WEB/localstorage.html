@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Local Storage Lista</title>
+</head>
+<body>
+    <h1>Lista de Nombres</h1>
+    <input type="text" id="inputNombre" placeholder="Ingrese su nombre">
+    <button id="btnGuardar">Guardar Nombre</button>
+    <button id="btnMostrar">Mostrar Nombres Guardados</button>
+    <ul id="listaNombres"></ul>
+
+    <script>
+        const btnGuardar = document.getElementById("btnGuardar");
+        const btnMostrar = document.getElementById("btnMostrar");
+        const inputNombre = document.getElementById("inputNombre");
+        const listaNombres = document.getElementById("listaNombres");
+
+        
+        btnGuardar.addEventListener("click", () => {
+            let nombres = JSON.parse(localStorage.getItem("nombres")) || [];
+            nombres.push(inputNombre.value);
+            localStorage.setItem("nombres", JSON.stringify(nombres));
+            inputNombre.value = ""; // limpiar input
+            alert("Nombre guardado correctamente");
+        });
+
+      
+        btnMostrar.addEventListener("click", () => {
+            listaNombres.innerHTML = ""; // limpiar lista
+            let nombres = JSON.parse(localStorage.getItem("nombres")) || [];
+            if (nombres.length === 0) {
+                listaNombres.innerHTML = "<li>No hay nombres guardados.</li>";
+            } else {
+                nombres.forEach(nombre => {
+                    const li = document.createElement("li");
+                    li.textContent = nombre;
+                    listaNombres.appendChild(li);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

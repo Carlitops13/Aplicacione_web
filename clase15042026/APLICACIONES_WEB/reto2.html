@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    // Reto:3 Mostrar un saludo distinto según la hora o según la logitud del
+    nombre ingresado.
+    <h3 id="titulo">Bienvenido</h3>
+    <input id="nombre" type="text" placeholder="Escribe tu nombre" />
+    <button id="btn">Saludar</button>
+    <p id="resultado"></p>
+
+    <script>
+      const inputNombre = document.getElementById("nombre");
+      const btnSaludar = document.getElementById("btn");
+      const resultado = document.getElementById("resultado");
+
+      btnSaludar.addEventListener("click", () => {
+        const nombre = inputNombre.value;
+        const horaActual = new Date().getHours();
+
+        let saludo;
+
+        if (horaActual < 12) {
+          saludo = "¡Buenos días!";
+        } else if (horaActual < 18) {
+          saludo = "¡Buenas tardes!";
+        } else {
+          saludo = "¡Buenas noches!";
+        }
+
+        if (nombre.length > 5) {
+          saludo += ` ¡Hola, ${nombre}!`;
+        } else {
+          saludo += ` ¡Hola, ${nombre}! Tu nombre es corto.`;
+        }
+
+        resultado.textContent = saludo;
+      });
+    </script>
+  </body>
+</html>
